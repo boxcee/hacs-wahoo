@@ -1,21 +1,20 @@
 {
     "config": {
-        "title": "Blueprint",
+        "title": "Wahoo",
         "step": {
             "user": {
-                "title": "Blueprint",
-                "description": "If you need help with the configuration have a look here: https://github.com/custom-components/blueprint",
+                "title": "Wahoo",
+                "description": "If you need help with the configuration have a look here: https://github.com/boxcee/hacs-wahoo",
                 "data": {
-                    "username": "Username",
-                    "password": "Password"
+                    "live_url": "Wahoo live tracking URL"
                 }
             }
         },
         "error": {
-            "auth": "Username/Password is wrong."
+            "auth": "URL is invalid."
         },
         "abort": {
-            "single_instance_allowed": "Only a single configuration of Blueprint is allowed."
+            "single_instance_allowed": "Only a single configuration of Wahoo is allowed."
         }
     },
     "options": {

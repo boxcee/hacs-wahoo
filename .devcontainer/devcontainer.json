@@ -17,7 +17,7 @@
 	],
 	"settings": {
 		"files.eol": "\n",
-		"editor.tabSize": 4,
+		"editor.tabSize": 2,
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"python.pythonPath": "/usr/bin/python3",
 		"python.linting.pylintEnabled": true,

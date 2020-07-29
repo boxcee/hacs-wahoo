@@ -7,17 +7,17 @@ from custom_components.wahoo.const import (
     DEFAULT_NAME,
     DOMAIN,
 )
-from custom_components.wahoo.entity import BlueprintEntity
+from custom_components.wahoo.entity import WahooEntity
 
 
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup binary_sensor platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
-    async_add_devices([BlueprintBinarySensor(coordinator, entry)])
+    async_add_devices([WahooBinarySensor(coordinator, entry)])
 
 
-class BlueprintBinarySensor(BlueprintEntity, BinarySensorDevice):
-    """blueprint binary_sensor class."""
+class WahooBinarySensor(WahooEntity, BinarySensorDevice):
+    """Wahoo binary_sensor class."""
 
     @property
     def name(self):

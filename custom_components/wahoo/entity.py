@@ -1,10 +1,10 @@
-"""BlueprintEntity class"""
+"""WahooEntity class"""
 from homeassistant.helpers import entity
 
-from custom_components.blueprint.const import DOMAIN, NAME, VERSION
+from custom_components.wahoo.const import DOMAIN, NAME, VERSION
 
 
-class BlueprintEntity(entity.Entity):
+class WahooEntity(entity.Entity):
     def __init__(self, coordinator, config_entry):
         self.coordinator = coordinator
         self.config_entry = config_entry
