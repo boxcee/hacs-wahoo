@@ -1,9 +1,10 @@
 default_config:
 
-automation: !include automations.yaml
+wahoo:
+  live_url: https://www.wahooligan.com/users/live
 
 logger:
-  default: error
+  default: debug
   logs:
-    custom_components.blueprint: debug
+    custom_components.wahoo: debug
 

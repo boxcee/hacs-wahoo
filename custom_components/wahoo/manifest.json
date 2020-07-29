@@ -1,0 +1,13 @@
+{
+  "domain": "wahoo",
+  "name": "Wahoo",
+  "documentation": "https://github.com/boxcee/hacs-wahoo",
+  "dependencies": [],
+  "config_flow": true,
+  "codeowners": [
+    "@boxcee"
+  ],
+  "requirements": [
+    "websocket_client==0.57.0"
+  ]
+}
