@@ -1,8 +1,5 @@
 default_config:
 
-wahoo:
-  live_url: https://www.wahooligan.com/users/live/2hOwajp2PHFyB8Jw-O-Mgg
-
 logger:
   default: info
   logs:
