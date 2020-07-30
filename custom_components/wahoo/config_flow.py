@@ -3,7 +3,7 @@ from homeassistant import config_entries
 from homeassistant.core import callback
 import voluptuous as vol
 
-from custom_components.wahoo.const import (  # pylint: disable=unused-import,import-error
+from custom_components.wahoo.const import (  # pylint: disable=unused-import
     CONF_LIVE_URL,
     DOMAIN,
     PLATFORMS,

@@ -1,16 +1,16 @@
-"""Sensor platform for blueprint."""
-from custom_components.blueprint.const import DEFAULT_NAME, DOMAIN, ICON, SENSOR
-from custom_components.blueprint.entity import BlueprintEntity
+"""Sensor platform for Wahoo."""
+from custom_components.wahoo.const import DEFAULT_NAME, DOMAIN, ICON, SENSOR
+from custom_components.wahoo.entity import WahooEntity
 
 
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
-    async_add_devices([BlueprintSensor(coordinator, entry)])
+    async_add_devices([WahooSensor(coordinator, entry)])
 
 
-class BlueprintSensor(BlueprintEntity):
-    """blueprint Sensor class."""
+class WahooSensor(WahooEntity):
+    """Wahoo Sensor class."""
 
     @property
     def name(self):
@@ -20,7 +20,7 @@ class BlueprintSensor(BlueprintEntity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        return self.coordinator.data.get("static")
+        return self.coordinator.data.get("workout_state")
 
     @property
     def icon(self):

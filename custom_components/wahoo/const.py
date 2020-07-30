@@ -1,4 +1,4 @@
-"""Constants for wahoo."""
+"""Constants for Wahoo."""
 # Base component constants
 NAME = "Wahoo"
 DOMAIN = "wahoo"
@@ -10,13 +10,9 @@ ISSUE_URL = "https://github.com/boxcee/hacs-wahoo/issues"
 # Icons
 ICON = "mdi:format-quote-close"
 
-# Device classes
-BINARY_SENSOR_DEVICE_CLASS = "connectivity"
-
 # Platforms
-BINARY_SENSOR = "binary_sensor"
 SENSOR = "sensor"
-PLATFORMS = [BINARY_SENSOR, SENSOR]
+PLATFORMS = [SENSOR]
 
 # Configuration and options
 CONF_ENABLED = "enabled"

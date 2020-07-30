@@ -37,8 +37,9 @@ class WahooEntity(entity.Entity):
     def device_state_attributes(self):
         """Return the state attributes."""
         return {
-            "time": str(self.coordinator.data.get("time")),
-            "static": self.coordinator.data.get("static"),
+            "longitude": self.coordinator.data.get("lon"),
+            "latitude": self.coordinator.data.get("lat"),
+            "workout_state": self.coordinator.data.get("workout_state"),
         }
 
     async def async_added_to_hass(self):
