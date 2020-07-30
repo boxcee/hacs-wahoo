@@ -16,7 +16,12 @@ class Wahoo:
         """Initialize."""
         self.tracking_id = get_tracking_id(live_url)
         self.ws = websocket.create_connection(WAHOO_WSS)
-        self.client_id = None
+        self.client_id = get_client_id()
+        self.data = {}
+
+    @property
+    def get_data(self):
+        return self.data
 
     def subscribe_to_live_tracking(self):
         message: list = [
@@ -28,14 +33,8 @@ class Wahoo:
         ]
 
         self.ws.send(json.dumps(message))
-        ws_response = self.ws.recv()
-        _LOGGER.debug(ws_response)
 
-    def get_workout_status(self):
-        if self.client_id is None:
-            self.client_id = get_client_id()
-            self.subscribe_to_live_tracking()
-
+    def subscribe_to_workout_status(self):
         message: list = [
             {
                 "channel": "/meta/connect",
@@ -45,11 +44,19 @@ class Wahoo:
         ]
 
         self.ws.send(json.dumps(message))
-        ws_response = self.ws.recv()
-        _LOGGER.debug(ws_response)
 
-        json_response = json.loads(ws_response)
-        return json_response[0].get("data", {})
+    async def start(self):
+        if self.client_id is None:
+            self.client_id = get_client_id()
+
+        self.subscribe_to_live_tracking()
+        self.subscribe_to_workout_status()
+
+        last_message = self.ws.recv()
+        while last_message:
+            _LOGGER.debug(last_message)
+            self.subscribe_to_workout_status()
+            last_message = self.ws.recv()
 
 
 def parse_jsonp(jsonp) -> dict:
