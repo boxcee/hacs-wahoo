@@ -7,7 +7,9 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import Config, HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from custom_components.wahoo.wahoo import Wahoo
 import websocket
+import requests
 
 from custom_components.wahoo.const import (
     CONF_LIVE_URL,
@@ -64,7 +66,7 @@ class WahooDataUpdateCoordinator(DataUpdateCoordinator):
 
     def __init__(self, hass, live_url):
         """Initialize."""
-        self.ws = websocket.create_connection("wss://mb.wahooligan.com/faye")
+        self.wahoo = Wahoo(live_url)
         self.platforms = []
 
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=SCAN_INTERVAL)
@@ -72,20 +74,7 @@ class WahooDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self):
         """Update data via library."""
         try:
-            self.ws.send(
-                json.dumps(
-                    [
-                        {
-                            "channel": "/meta/connect",
-                            "clientId": "206f47ku701zzeea9lodyyvk7bnzql1",
-                            "connectionType": "websocket",
-                        }
-                    ]
-                )
-            )
-            response = json.loads(self.ws.recv())
-            _LOGGER.debug(response)
-            return response[0].get("data", {})
+            return self.wahoo.get_workout_status()
         except Exception as exception:
             raise UpdateFailed(exception)
 
